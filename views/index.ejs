@@ -8,15 +8,17 @@
 </head>
 <body>
     <div class="box" id="heading">
-        <h1><%= date.date %></h1>
-        <h1><%= date.weekday %></h1>
+        <<h1><%= date.date %></h1>
+        <h1><%= date.weekday %></h1>>
     </div>
 
     <div class="box">
-        <div class="item">
-            <input type="checkbox">
-            <p>test</p>
-        </div>
+        <% for(let i = 0; i < toDoItems.length; i++) { %>
+            <div class="item">
+                <input type="checkbox">
+                <p><%= toDoItems[i].description %></p>
+            </div>
+        <% } %>
 
         <form action="/" method="POST">
             <input type="text" name="newTask" placeholder="Add New Task">

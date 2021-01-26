@@ -1,3 +1,4 @@
+const { static } = require('express');
 const fs = require('fs');
 const path = require('path');
 
@@ -32,5 +33,25 @@ module.exports = class Task {
 
             callBack(JSON.parse(fileContent))                           ;
         });
+    }
+
+        static deleteTask(taskDescription) {
+            fs.readFile(filePath,(error,fileContent) => {
+                let tasks = [];
+                if(!error) {
+                    tasks = JSON.parse(fileContent);
+                }
+
+                for(let i = 0; i < tasks.length; i++) {
+                    if(tasks[i].description === taskDescription) {
+                        tasks.splice(i, 1);
+                        break;
+                    }
+                }
+
+                fs.writeFile(filePath, JSON.stringify(tasks), (error) => {
+                    console.log("error from writing");
+                });
+            });
     }
 }

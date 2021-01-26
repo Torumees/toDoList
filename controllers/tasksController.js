@@ -18,3 +18,8 @@ exports.postnewTask = (req, res) => {
     item.saveTask();
     res.redirect('/');
 };
+
+exports.deleteTask = (req, res) => {
+    Task.deleteTask(req.body.checkbox);
+    res.redirect('/');
+}
